@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Você</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #1C1C1C;
+      color: #F4F4F4;
+    }
+
+    header {
+      background-color: #1C1C1C;
+      padding: 40px 20px 20px;
+      text-align: center;
+      border-bottom: 1px solid #2E2E2E;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      color: #F39C12;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+      padding: 0 20px;
+    }
+
+    .tab {
+      background-color: transparent;
+      border: 2px solid #F39C12;
+      color: #F39C12;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .tab:hover,
+    .tab.active {
+      background-color: #F39C12;
+      color: #1C1C1C;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: #2E2E2E;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 30px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .card.active {
+      display: block;
+    }
+
+    .card p, .card li {
+      line-height: 1.8;
+      color: #F4F4F4;
+    }
+
+    .bibu-box {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .bibu-box img {
+      width: 120px;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    .back-home {
+      background-color: #F39C12;
+      color: #1C1C1C;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .back-home:hover {
+      background-color: #d98c00;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .bibu-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Para Você</h1>
+  </header>
+
+  <nav>
+    <button class="tab" onclick="showTab('inicio')">Início</button>
+    <button class="tab" onclick="showTab('musicas')">Músicas que me lembram você</button>
+    <button class="tab" onclick="showTab('personagens')">Personagens que me lembram você</button>
+    <button class="tab" onclick="showTab('ninja')">Projeto Ninja</button>
+    <button class="tab" onclick="showTab('bibu')">Curiosidades sobre o Bibu</button>
+    <button class="tab" onclick="showTab('criadora')">Curiosidades sobre mim</button>
+  </nav>
+
+  <main>
+    <div id="inicio" class="card active">
+      <div class="bibu-box">
+        <img src="https://img.freepik.com/vetores-premium/ilustracao-dos-desenhos-animados-de-mao-acenando-robo-bonito_138676-2744.jpg?w=740" alt="Bibu">
+        <div>
+          <p><strong>Oi, Gabi.</strong> Eu sei, você não esperava por isso de novo, mas aqui está: mais um cantinho feito com carinho só pra você.</p>
+        </div>
+      </div>
+      <p>Não tem robô acenando, nem cafezinho virtual. Só palavras sinceras, memórias boas e aquela vontade de te lembrar — discretamente, mas com verdade — o quanto você é especial.</p>
+      <p>Esse lugar é só nosso. E ele vai crescer conforme a vontade e o sentimento forem pedindo. Então, navegue devagar. Tem muito de mim aqui, e ainda mais de você.</p>
+    </div>
+
+    <div id="musicas" class="card">
+      <h2>Músicas que me lembram você</h2>
+      <ul>
+        <li>...</li>
+      </ul>
+    </div>
+
+    <div id="personagens" class="card">
+      <h2>Personagens que me lembram você</h2>
+      <ul>
+        <li>...</li>
+      </ul>
+    </div>
+
+    <div id="ninja" class="card">
+      <h2>Projeto Ninja</h2>
+      <div id="projeto-ninja" class="content-box hidden">
+    <h2>Projeto Ninja</h2>
+    <p>
+        Comecei a escrever uma espécie de diário quando começamos a sair, e lá conto sobre todas as vezes que nos vimos.
+        Vou ter que confessar que você vai receber apenas a versão censurada, porque seria uma exposição muito grande
+        e prefiro não passar por ela.<br><br>
+        Mas aqui você vai encontrar PDFs com cada carta escrita nesse diário, ou como eu gosto de chamar:
+        <strong>"Projeto Ninja"</strong>
+    </p>
+
+    <ul style="text-align: left; padding-left: 20px; line-height: 1.8;">
+        <li><a href="pdfs/introducao.pdf" target="_blank">📄 Introdução</a></li>
+        <li><a href="pdfs/capitulo-1.pdf" target="_blank">📄 Capítulo 1 - 08/02/2025</a></li>
+        <li><a href="pdfs/capitulo-2.pdf" target="_blank">📄 Capítulo 2 - 05/05/2025</a></li>
+        <li><a href="pdfs/capitulo-3.pdf" target="_blank">📄 Capítulo 3 - 25/05/2025</a></li>
+        <li><a href="pdfs/capitulo-4.pdf" target="_blank">📄 Capítulo 4 - 01/06/2025</a></li>
+    </ul>
+</div>
+
+    <div id="bibu" class="card">
+      <h2>Curiosidades sobre o Bibu</h2>
+      <ul>
+        <li>O Bibu adora café, mesmo sem ter boca.</li>
+        <li>Quando alguém fala "erro 404", ele se balança nervoso.</li>
+        <li>Ele canta "I Will Survive" em binário nas horas vagas.</li>
+      </ul>
+    </div>
+
+    <div id="criadora" class="card">
+      <h2>Curiosidades sobre mim</h2>
+      <ul>
+        <li>...</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <button class="back-home" onclick="showTab('inicio')" id="backBtn">Voltar à Tela Inicial</button>
+  </footer>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.card').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+
+      // Mostrar botão "Voltar" apenas se não for a aba "inicio"
+      const backBtn = document.getElementById('backBtn');
+      if (tabId === 'inicio') {
+        backBtn.style.display = 'none';
+      } else {
+        backBtn.style.display = 'inline-block';
+      }
+
+      const tabButtons = document.querySelectorAll('.tab');
+      tabButtons.forEach(btn => {
+        if (btn.textContent.toLowerCase().includes(tabId.split('-')[0])) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Inicialmente esconder botão de voltar
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('backBtn').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
