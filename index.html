@@ -236,7 +236,69 @@
     <button class="tab" onclick="showTab('personagens')">Personagens que me lembram você</button>
     <button class="tab" onclick="showTab('ninja')">Projeto Ninja</button>
     <button class="tab" onclick="showTab('bibu')">Curiosidades sobre o Bibu</button>
-    <button class="tab" onclick="showTab('criadora')">Curiosidades sobre mim</button>
+    <button class="tab" onclick="showTab('criadora')">Curiosidades sobre mim</button><button class="tab" onclick="showTab('mensagem')">Me dizer algo</button>
+  </nav>
+
+  <main>
+ 
+
+    <div id="mensagem" class="card">
+      <h2>Me dizer algo</h2>
+      <p>Vou deixar aqui livre para caso sinta no seu coração de me dizer algo. O que for dito aqui, fica aqui. Não irei te questionar ou comentar a respeito.</p>
+      <form id="response-form">
+        <input type="text" id="question" name="question" placeholder="Digite sua mensagem..." required>
+        <button type="submit" style="background-color: #F39C12; color: #1C1C1C; padding: 10px 20px; border: none; border-radius: 30px; cursor: pointer;">Enviar</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <button class="back-home" onclick="showTab('inicio')" id="backBtn">Voltar à Tela Inicial</button>
+  </footer>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init('LK_cotNCBhLRvMjxy');
+
+    document.getElementById('response-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm('kauanee', 'respostas_bibu', this)
+        .then(function (response) {
+          alert('Mensagem enviada com sucesso.');
+          document.getElementById('response-form').reset();
+        }, function (error) {
+          alert('Ocorreu um erro. Tente novamente mais tarde.');
+          console.log('Erro:', error);
+        });
+    });
+
+    function showTab(tabId) {
+      document.querySelectorAll('.card').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+
+      const backBtn = document.getElementById('backBtn');
+      if (tabId === 'inicio') {
+        backBtn.style.display = 'none';
+      } else {
+        backBtn.style.display = 'inline-block';
+      }
+
+      const tabButtons = document.querySelectorAll('.tab');
+      tabButtons.forEach(btn => {
+        if (btn.textContent.toLowerCase().includes(tabId.split('-')[0])) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('backBtn').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
   </nav>
 
   <main>
@@ -250,6 +312,7 @@
       <p>Vou te explicar a razão deste, antes de tudo, acho válido avisar que ele está em fase de teste. Mas foi a única forma que encontrei de falar as coisas que nunca conseguirei verbalizar diretamente a você.</p>
       <p>Então esse lugar será só nosso. E ele vai crescer conforme as coisas forem acontecendo. Então, navegue devagar. Tem muito de mim aqui, e ainda mais de você.</p>
     </div>
+
 
    <div id="musicas" class="card">
   <h2>Músicas que me lembram você</h2>
@@ -329,7 +392,7 @@
     <div id="personagens" class="card">
       <h2>Personagens que me lembram você</h2>
       <ul>
-      
+        <li></li>
       </ul>
       <div class="character-card">
         <img src="personagens/robin.jpg" alt="Robin Scherbatsky sorrindo">
@@ -355,7 +418,7 @@
 
         <div class="ninja-grid">
           <div class="ninja-card">
-            <a href="pdfs/introdução.pdf" target="_blank">
+            <a href="pdfs/introducao.pdf" target="_blank">
               ✉️ Introdução
             </a>
           </div>
@@ -405,14 +468,9 @@
         <li> O primeiro instrumento que eu tive vontade de aprender foi a bateria, minha mãe sempre me disse que me daria uma. Mas anos depois suspeito que ela me enganou fortemente. </li>
         <li> Minha mãe me contou recentemente que, quando eu era mais nova, eu tinha um amigo imaginário. Ela disse que eu conversava com ele, que acordava algumas madrugadas gritando ou parava do nada durante o dia, gritava e puxava o ar como se alguém estivesse tentando me pegar.
         Isso me deixou intrigada e assustada — mas eu honestamente não me lembro de nada disso.. </li>
-        <li>Meu personagem preferido de desenho animado é o Soluço, de Como Treinar o Seu Dragão. No primeiro filme, vemos como ele parece desajustado diante do contexto em que foi criado e do ambiente em que está inserido. Ainda assim, ele passa o filme inteiro tentando mostrar que matar não é o caminho certo. Mesmo acreditando que um dos dragões tenha levado sua mãe, ele confronta o pai quando escuta: “Você está do lado deles? Eles mataram centenas de nós, eles levaram sua mãe.” E ele responde: “E nós matamos milhares deles.” Soluço acredita que os dragões fazem isso por necessidade — porque precisam de comida, porque invadiram o território deles. Gosto dele por causa disso, por causa da forma como ele enxerga o mundo. Concordo com ele: guerras e vinganças não nos levam a lugar algum.</li>
       </ul>
     </div>
   </main>
-
-  <footer>
-    <button class="back-home" onclick="showTab('inicio')" id="backBtn">Voltar à Tela Inicial</button>
-  </footer>
 
   <script>
     function showTab(tabId) {
