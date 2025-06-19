@@ -8,19 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500&display=swap" rel="stylesheet">
 
   <style>
-.ninja-card {
-  background-color: #2E2E2E;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  padding: 20px;
-  margin: 15px 0;
-  transition: 0.3s ease;
-}
+    .ninja-card {
+      background-color: #2E2E2E;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      padding: 20px;
+      margin: 15px 0;
+      transition: 0.3s ease;
+    }
 
-.ninja-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
+    .ninja-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
 
     body {
       margin: 0;
@@ -135,93 +135,95 @@
         text-align: center;
       }
     }
-.spotify-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin-top: 20px;
-}
 
-.spotify-item {
-  background-color: #2E2E2E;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-}
+    .spotify-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
 
-.spotify-item:hover {
-  transform: scale(1.02);
-}
+    .spotify-item {
+      background-color: #2E2E2E;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
 
-.spotify-item img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 8px;
-  margin-top: 10px;
-}
-.ninja-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
-}
+    .spotify-item:hover {
+      transform: scale(1.02);
+    }
 
-.ninja-card {
-  background-color: #2E2E2E;
-  border: 1px solid #444;
-  border-left: 5px solid #F39C12;
-  border-radius: 8px;
-  padding: 16px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    .spotify-item img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
 
-.ninja-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
+    .ninja-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
 
-.ninja-card a {
-  text-decoration: none;
-  color: #F4F4F4;
-  font-weight: 500;
-  display: block;
-}
+    .ninja-card {
+      background-color: #2E2E2E;
+      border: 1px solid #444;
+      border-left: 5px solid #F39C12;
+      border-radius: 8px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
+    .ninja-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .ninja-card a {
+      text-decoration: none;
+      color: #F4F4F4;
+      font-weight: 500;
+      display: block;
+    }
+
+    /* Estilos do personagem Robin Scherbatsky */
+    .character-card {
+      display: flex;
+      gap: 18px;
+      background-color: #2E2E2E;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 20px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .character-card img {
+      width: 90px;   /* diminui o tamanho da imagem */
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .character-info h3 {
+      margin: 0 0 10px;
+      color: #F39C12;
+      font-size: 1.3rem;
+    }
+
+    .character-info p {
+      margin: 6px 0;
+      color: #F4F4F4;
+      line-height: 1.6;
+    }
   </style>
-.character-card {
-  display: flex;
-  gap: 18px;
-  background-color: #2E2E2E;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  padding: 20px;
-  margin-bottom: 24px;
-  align-items: center;
-}
-
-.character-card img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.character-info h3 {
-  margin: 0 0 10px;
-  color: #F39C12;
-  font-size: 1.3rem;
-}
-
-.character-info p {
-  margin: 6px 0;
-  color: #F4F4F4;
-  line-height: 1.6;
-}
-
 </head>
 <body>
   <header>
@@ -324,73 +326,67 @@
   </div>
 </div>
 
-
-
     <div id="personagens" class="card">
       <h2>Personagens que me lembram você</h2>
       <ul>
         <li></li>
       </ul>
-<div class="character-card">
-  <img src="personagens/robin.jpg" alt="Robin Scherbatsky sorrindo">
-  <div class="character-info">
-    <h3>Robin Scherbatsky – <em>How I Met Your Mother</em></h3>
-    <p><strong>Quem é:</strong> Robin Scherbatsky é uma jornalista linda, inteligente e independente. Na trama, ela enfrenta seus desafios para se relacionar, porque sempre parecia estar dividida entre sua carreira e sua vida amorosa — mas, na verdade, não era exatamente um embate, já que a carreira acabava atropelando a vida amorosa, como a Alemanha atropelou o Brasil no 7x1.</p>
-    <p><strong>A semelhança dela com você:</strong> Acredito que está principalmente no contexto romântico, especialmente na relação dela com o Teddy. No começo, Robin diz que ele não está louco quando afirma que existe algo entre eles, mas que ele quer algo a mais do que ela pode oferecer. Eles mal se conhecem, e ele já olha para ela com aquele olhar de “vamos casar, ter filhos e levar eles para o treino de futebol”. Ela responde que, como ele mesmo diz, não vai forçar as crianças a praticar esportes, só se elas quiserem, e que essa é uma bela visão — mas que ele estava olhando para a garota errada. Ele rebate dizendo que não está.
-
-Eu concordo com ele, e acho que você concorda com ela. É aí que mora a semelhança: acho que você vê esse mesmo olhar em mim. E me desculpa se isso te assusta.</p>
-  </div>
-</div>
-
+      <div class="character-card">
+        <img src="personagens/robin.jpg" alt="Robin Scherbatsky sorrindo">
+        <div class="character-info">
+          <h3>Robin Scherbatsky – <em>How I Met Your Mother</em></h3>
+          <p><strong>Quem é:</strong> Robin Scherbatsky é uma jornalista linda, inteligente e independente. Na trama, ela enfrenta seus desafios para se relacionar, porque sempre parecia estar dividida entre sua carreira e sua vida amorosa — mas, na verdade, não era exatamente um embate, já que a carreira acabava atropelando a vida amorosa, como a Alemanha atropelou o Brasil no 7x1.</p>
+          <p><strong>A semelhança dela com você:</strong> Acredito que está principalmente no contexto romântico, especialmente na relação dela com o Teddy. No começo, Robin diz que ele não está louco quando afirma que existe algo entre eles, mas que ele quer algo a mais do que ela pode oferecer. Eles mal se conhecem, e ele já olha para ela com aquele olhar de “vamos casar, ter filhos e levar eles para o treino de futebol”. Ela responde que, como ele mesmo diz, não vai forçar as crianças a praticar esportes, só se elas quiserem, e que essa é uma bela visão — mas que ele estava olhando para a garota errada. Ele rebate dizendo que não está.<br><br>
+          Eu concordo com ele, e acho que você concorda com ela. É aí que mora a semelhança: acho que você vê esse mesmo olhar em mim. E me desculpa se isso te assusta.</p>
+        </div>
+      </div>
     </div>
 
-<div id="ninja" class="card">
-  <h2>Projeto Ninja</h2>
-  <div id="projeto-ninja" class="content-box hidden">
-    <p>
-  Comecei a escrever uma espécie de diário quando começamos a sair, e lá conto sobre todas as vezes que nos vimos.
-  Vou ter que confessar que você vai receber apenas a versão censurada, porque seria uma exposição muito grande
-  e prefiro não passar por ela.<br><br>
-  Mas aqui você vai encontrar PDFs com cada carta escrita nesse diário, ou como eu gosto de chamar:
-  <strong>"Projeto Ninja"</strong>
-</p>
+    <div id="ninja" class="card">
+      <h2>Projeto Ninja</h2>
+      <div id="projeto-ninja" class="content-box hidden">
+        <p>
+          Comecei a escrever uma espécie de diário quando começamos a sair, e lá conto sobre todas as vezes que nos vimos.
+          Vou ter que confessar que você vai receber apenas a versão censurada, porque seria uma exposição muito grande
+          e prefiro não passar por ela.<br><br>
+          Mas aqui você vai encontrar PDFs com cada carta escrita nesse diário, ou como eu gosto de chamar:
+          <strong>"Projeto Ninja"</strong>
+        </p>
 
-<div class="ninja-grid">
-  <div class="ninja-card">
-    <a href="pdfs/introducao.pdf" target="_blank">
-      ✉️ Introdução
-    </a>
-  </div>
-  <div class="ninja-card">
-    <a href="pdfs/capitulo-1.pdf" target="_blank">
-      ✉️ Capítulo 1 – 08/02/2025
-    </a>
-  </div>
-  <div class="ninja-card">
-    <a href="pdfs/capitulo-2.pdf" target="_blank">
-      ✉️ Capítulo 2 – 05/05/2025
-    </a>
-  </div>
-  <div class="ninja-card">
-    <a href="pdfs/capitulo-3.pdf" target="_blank">
-      ✉️ Capítulo 3 – 25/05/2025
-    </a>
-  </div>
-  <div class="ninja-card">
-    <a href="pdfs/capitulo-4.pdf" target="_blank">
-      ✉️ Capítulo 4 – 01/06/2025
-    </a>
-  </div>
-  <div class="ninja-card">
-    <a href="pdfs/capitulo-5.pdf" target="_blank">
-      ✉️ Capítulo 5 – 19/06/2025
-    </a>
-  </div>
-</div>
-	
-
-</div>
-
+        <div class="ninja-grid">
+          <div class="ninja-card">
+            <a href="pdfs/introducao.pdf" target="_blank">
+              ✉️ Introdução
+            </a>
+          </div>
+          <div class="ninja-card">
+            <a href="pdfs/capitulo-1.pdf" target="_blank">
+              ✉️ Capítulo 1 – 08/02/2025
+            </a>
+          </div>
+          <div class="ninja-card">
+            <a href="pdfs/capitulo-2.pdf" target="_blank">
+              ✉️ Capítulo 2 – 05/05/2025
+            </a>
+          </div>
+          <div class="ninja-card">
+            <a href="pdfs/capitulo-3.pdf" target="_blank">
+              ✉️ Capítulo 3 – 25/05/2025
+            </a>
+          </div>
+          <div class="ninja-card">
+            <a href="pdfs/capitulo-4.pdf" target="_blank">
+              ✉️ Capítulo 4 – 01/06/2025
+            </a>
+          </div>
+          <div class="ninja-card">
+            <a href="pdfs/capitulo-5.pdf" target="_blank">
+              ✉️ Capítulo 5 – 19/06/2025
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="bibu" class="card">
       <h2>Curiosidades sobre o Bibu</h2>
@@ -408,7 +404,7 @@ Eu concordo com ele, e acho que você concorda com ela. É aí que mora a semelh
         <li> Por essa razão acima, eu morro de medo de borboletas. </li>
         <li> O primeiro instrumento que eu tive vontade de aprender foi a bateria, minha mãe sempre me disse que me daria uma. Mas anos depois suspeito que ela me enganou fortemente. </li>
         <li> Minha mãe me contou recentemente que, quando eu era mais nova, eu tinha um amigo imaginário. Ela disse que eu conversava com ele, que acordava algumas madrugadas gritando ou parava do nada durante o dia, gritava e puxava o ar como se alguém estivesse tentando me pegar.
-Isso me deixou intrigada e assustada — mas eu honestamente não me lembro de nada disso.. </li>
+        Isso me deixou intrigada e assustada — mas eu honestamente não me lembro de nada disso.. </li>
       </ul>
     </div>
   </main>
@@ -432,7 +428,7 @@ Isso me deixou intrigada e assustada — mas eu honestamente não me lembro de n
       }
 
       const tabButtons = document.querySelectorAll('.tab');
-      tabButtons.forEacha(btn => {
+      tabButtons.forEach(btn => {
         if (btn.textContent.toLowerCase().includes(tabId.split('-')[0])) {
           btn.classList.add('active');
         }
