@@ -191,6 +191,37 @@
 }
 
   </style>
+.character-card {
+  display: flex;
+  gap: 18px;
+  background-color: #2E2E2E;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  padding: 20px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.character-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.character-info h3 {
+  margin: 0 0 10px;
+  color: #F39C12;
+  font-size: 1.3rem;
+}
+
+.character-info p {
+  margin: 6px 0;
+  color: #F4F4F4;
+  line-height: 1.6;
+}
+
 </head>
 <body>
   <header>
@@ -298,8 +329,17 @@
     <div id="personagens" class="card">
       <h2>Personagens que me lembram você</h2>
       <ul>
-        <li>...</li>
+        <li></li>
       </ul>
+<div class="character-card">
+  <img src="images/robin.jpg" alt="Robin Scherbatsky sorrindo">
+  <div class="character-info">
+    <h3>Robin Scherbatsky – <em>How I Met Your Mother</em></h3>
+    <p><strong>Quem é:</strong> Jornalista canadense, independente, franca e com uma paixão verdadeira pelo que faz. Ela vai fundo na carreira, ama uísque e tem um senso de humor afiado.</p>
+    <p><strong>Em comum com a Bibi:</strong> Assim como você, a Robin é autêntica, forte na sua maneira de ser, e abraça a sua carreira com coragem. Vocês duas têm essa energia de quem vive do seu jeito, sem medo de ser quem são — e isso me lembra muito você.</p>
+  </div>
+</div>
+
     </div>
 
 <div id="ninja" class="card">
@@ -315,7 +355,7 @@
 
 <div class="ninja-grid">
   <div class="ninja-card">
-    <a href="pdfs/introdução.pdf" target="_blank">
+    <a href="pdfs/introducao.pdf" target="_blank">
       ✉️ Introdução
     </a>
   </div>
