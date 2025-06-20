@@ -10,6 +10,7 @@
   <style>
     /* ... (seu estilo anterior completo aqui) ... */
 
+    
     #interditado-overlay {
       position: fixed;
       top: 0;
@@ -24,15 +25,40 @@
       justify-content: center;
     }
 
-    #interditado-overlay h1 {
+    .interditado-box {
+      background-color: #1C1C1C;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #F39C12;
+    }
+
+    .interditado-box h1 {
       color: #F39C12;
       font-size: 3rem;
       font-family: 'Playfair Display', serif;
-      background-color: #1C1C1C;
-      padding: 30px 60px;
-      border: 3px solid #F39C12;
-      border-radius: 20px;
-      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .interditado-box input {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .interditado-box button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #F39C12;
+      color: #1C1C1C;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -55,7 +81,13 @@
 
   <!-- Overlay de Interdição -->
   <div id="interditado-overlay">
-    <h1>SITE INTERDITADO</h1>
+    <div class="interditado-box">
+      <h1>SITE INTERDITADO</h1>
+      <p>Digite a senha para acessar:</p>
+      <input type="password" id="senha" placeholder="Senha..." />
+      <button onclick="verificarSenha()">Entrar</button>
+      <p id="erro-senha" style="color: red; display: none; margin-top: 10px;">Senha incorreta.</p>
+    </div>
   </div>
 
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
