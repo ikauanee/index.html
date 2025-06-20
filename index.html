@@ -8,6 +8,116 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500&display=swap" rel="stylesheet">
 
   <style>
+    /* ... (seu estilo anterior completo aqui) ... */
+
+    #interditado-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(6px);
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #interditado-overlay h1 {
+      color: #F39C12;
+      font-size: 3rem;
+      font-family: 'Playfair Display', serif;
+      background-color: #1C1C1C;
+      padding: 30px 60px;
+      border: 3px solid #F39C12;
+      border-radius: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Para Bibi</h1>
+  </header>
+
+  <nav>
+    <!-- ... seus botões de navegação ... -->
+  </nav>
+
+  <main>
+    <!-- ... seu conteúdo principal ... -->
+  </main>
+
+  <footer>
+    <button class="back-home" onclick="showTab('inicio')" id="backBtn">Voltar à Tela Inicial</button>
+  </footer>
+
+  <!-- Overlay de Interdição -->
+  <div id="interditado-overlay">
+    <h1>SITE INTERDITADO</h1>
+  </div>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init('LK_cotNCBhLRvMjxy');
+
+    document.getElementById('response-form')?.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm('kauanee', 'respostas_bibu', this)
+        .then(function (response) {
+          alert('Mensagem enviada com sucesso.');
+          document.getElementById('response-form').reset();
+        }, function (error) {
+          alert('Ocorreu um erro. Tente novamente mais tarde.');
+          console.log('Erro:', error);
+        });
+    });
+
+    function showTab(tabId) {
+      document.querySelectorAll('.card').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId)?.classList.add('active');
+
+      const backBtn = document.getElementById('backBtn');
+      if (tabId === 'inicio') {
+        backBtn.style.display = 'none';
+      } else {
+        backBtn.style.display = 'inline-block';
+      }
+
+      const tabButtons = document.querySelectorAll('.tab');
+      tabButtons.forEach(btn => {
+        if (btn.textContent.toLowerCase().includes(tabId.split('-')[0])) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('backBtn').style.display = 'none';
+
+      // Bloquear interação ao carregar overlay
+      const overlay = document.getElementById('interditado-overlay');
+      if (overlay) {
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Bibi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500&display=swap" rel="stylesheet">
+
+  <style>
     .ninja-card {
       background-color: #2E2E2E;
       border-radius: 12px;
