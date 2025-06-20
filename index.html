@@ -124,8 +124,22 @@
         if (btn.textContent.toLowerCase().includes(tabId.split('-')[0])) {
           btn.classList.add('active');
         }
-      });
+      function verificarSenha() {
+      const senhaDigitada = document.getElementById('senha').value.trim();
+      const senhaCorreta = 'sinto muito';
+
+      if (senhaDigitada === senhaCorreta) {
+        document.getElementById('interditado-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+      } else {
+        document.getElementById('erro-senha').style.display = 'block';
+      }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('backBtn').style.display = 'none';
+      document.body.style.overflow = 'hidden';
+    });
 
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('backBtn').style.display = 'none';
