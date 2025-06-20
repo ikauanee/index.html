@@ -90,24 +90,61 @@
     </div>
   </div>
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    emailjs.init('LK_cotNCBhLRvMjxy');
+ <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  emailjs.init('LK_cotNCBhLRvMjxy');
 
-    document.getElementById('response-form')?.addEventListener('submit', function (e) {
-      e.preventDefault();
+  document.getElementById('response-form').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      emailjs.sendForm('kauanee', 'respostas_bibu', this)
-        .then(function (response) {
-          alert('Mensagem enviada com sucesso.');
-          document.getElementById('response-form').reset();
-        }, function (error) {
-          alert('Ocorreu um erro. Tente novamente mais tarde.');
-          console.log('Erro:', error);
-        });
+    emailjs.sendForm('kauanee', 'respostas_bibu', this)
+      .then(function (response) {
+        alert('Mensagem enviada com sucesso.');
+        document.getElementById('response-form').reset();
+      }, function (error) {
+        alert('Ocorreu um erro. Tente novamente mais tarde.');
+        console.log('Erro:', error);
+      });
+  });
+
+  function showTab(tabId) {
+    document.querySelectorAll('.card').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId)?.classList.add('active');
+
+    const backBtn = document.getElementById('backBtn');
+    if (tabId === 'inicio') {
+      backBtn.style.display = 'none';
+    } else {
+      backBtn.style.display = 'inline-block';
+    }
+
+    const tabButtons = document.querySelectorAll('.tab');
+    tabButtons.forEach(btn => {
+      if (btn.textContent.toLowerCase().includes(tabId.split('-')[0])) {
+        btn.classList.add('active');
+      }
     });
+  }
 
-    <script>
+  function verificarSenha() {
+    const senhaDigitada = document.getElementById('senha').value.trim();
+    const senhaCorreta = 'sinto muito';
+
+    if (senhaDigitada === senhaCorreta) {
+      document.getElementById('interditado-overlay').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    } else {
+      document.getElementById('erro-senha').style.display = 'block';
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('backBtn').style.display = 'none';
+    document.body.style.overflow = 'hidden';
+  });
+</script>
+
   emailjs.init('LK_cotNCBhLRvMjxy');
 
   document.getElementById('response-form').addEventListener('submit', function (e) {
