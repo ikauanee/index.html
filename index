@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Financeiro</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .btn-export {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .btn-export:hover {
+            background: #229954;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .kpi-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .kpi-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 10px;
+        }
+        .charts-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .chart-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #ddd;
+        }
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+        th {
+            background: #34495e;
+            color: white;
+        }
+        tr:hover {
+            background: #f5f5f5;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📊 Dashboard Financeiro</h1>
+    
+    <button class="btn-export" onclick="exportToExcel()">
+        📥 Exportar para Excel/Planilha
+    </button>
+    
+    <div id="statusMsg" class="status"></div>
+    
+    <div class="kpi-grid" id="kpis"></div>
+    
+    <div class="charts-row">
+        <div class="chart-card">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <canvas id="resultChart"></canvas>
+        </div>
+    </div>
+    
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Mês/Ano</th>
+                <th>Receita (R$)</th>
+                <th>Recebimentos (R$)</th>
+                <th>Descontos (R$)</th>
+                <th>Inadimplência (R$)</th>
+                <th>Resultado (R$)</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<script>
+// SEUS DADOS - EDITAR AQUI COM SEUS NÚMEROS REAIS
+const dados = [
+    { mes: "Jan/2025", receita: 15799.99, recebimentos: 0, descontos: 0, inadimplencia: 0 },
+    { mes: "Fev/2025", receita: 15799.99, recebimentos: 0, descontos: 0, inadimplencia: 0 },
+    { mes: "Mar/2025", receita: 17800.00, recebimentos: 12500.00, descontos: 430.00, inadimplencia: 212.50 },
+    { mes: "Abr/2025", receita: 19250.50, recebimentos: 18800.00, descontos: 520.00, inadimplencia: 310.00 },
+    { mes: "Mai/2025", receita: 20720.00, recebimentos: 20150.00, descontos: 645.00, inadimplencia: 402.00 },
+    { mes: "Jun/2025", receita: 23100.25, recebimentos: 22580.00, descontos: 782.00, inadimplencia: 489.00 },
+    { mes: "Jul/2025", receita: 24799.99, recebimentos: 24100.00, descontos: 901.00, inadimplencia: 605.00 },
+    { mes: "Ago/2025", receita: 26580.00, recebimentos: 25890.00, descontos: 1020.00, inadimplencia: 712.00 },
+    { mes: "Set/2025", receita: 28100.45, recebimentos: 27500.00, descontos: 1135.00, inadimplencia: 833.00 },
+    { mes: "Out/2025", receita: 29850.90, recebimentos: 29100.00, descontos: 1290.00, inadimplencia: 961.00 },
+    { mes: "Nov/2025", receita: 31420.30, recebimentos: 30750.00, descontos: 1395.00, inadimplencia: 1090.00 },
+    { mes: "Dez/2025", receita: 33987.60, recebimentos: 33200.00, descontos: 1510.00, inadimplencia: 1270.00 }
+];
+
+// Calcular resultado ajustado para cada mês
+dados.forEach(item => {
+    item.resultado = item.receita - (item.recebimentos - item.descontos - item.inadimplencia);
+});
+
+// Calcular totais
+const totalReceita = dados.reduce((sum, item) => sum + item.receita, 0);
+const totalRecebimentos = dados.reduce((sum, item) => sum + item.recebimentos, 0);
+const totalDescontos = dados.reduce((sum, item) => sum + item.descontos, 0);
+const totalInadimplencia = dados.reduce((sum, item) => sum + item.inadimplencia, 0);
+const totalResultado = dados.reduce((sum, item) => sum + item.resultado, 0);
+const eficiencia = (totalRecebimentos / totalReceita * 100).toFixed(1);
+
+// Mostrar KPIs
+function mostrarKPIs() {
+    const kpisHtml = `
+        <div class="kpi-card">
+            <h3>💰 Receita Total</h3>
+            <div class="kpi-value">R$ ${totalReceita.toLocaleString('pt-BR')}</div>
+        </div>
+        <div class="kpi-card">
+            <h3>📥 Total Recebido</h3>
+            <div class="kpi-value">R$ ${totalRecebimentos.toLocaleString('pt-BR')}</div>
+            <small>Eficiência: ${eficiencia}%</small>
+        </div>
+        <div class="kpi-card">
+            <h3>📉 Descontos + Inadimplência</h3>
+            <div class="kpi-value">R$ ${(totalDescontos + totalInadimplencia).toLocaleString('pt-BR')}</div>
+        </div>
+        <div class="kpi-card">
+            <h3>✅ Resultado Líquido</h3>
+            <div class="kpi-value">R$ ${totalResultado.toLocaleString('pt-BR')}</div>
+        </div>
+    `;
+    document.getElementById('kpis').innerHTML = kpisHtml;
+}
+
+// Mostrar tabela
+function mostrarTabela() {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    
+    dados.forEach(item => {
+        const row = tbody.insertRow();
+        row.insertCell(0).textContent = item.mes;
+        row.insertCell(1).textContent = `R$ ${item.receita.toLocaleString('pt-BR')}`;
+        row.insertCell(2).textContent = `R$ ${item.recebimentos.toLocaleString('pt-BR')}`;
+        row.insertCell(3).textContent = `R$ ${item.descontos.toLocaleString('pt-BR')}`;
+        row.insertCell(4).textContent = `R$ ${item.inadimplencia.toLocaleString('pt-BR')}`;
+        row.insertCell(5).textContent = `R$ ${item.resultado.toLocaleString('pt-BR')}`;
+        
+        // Colorir resultado negativo
+        if (item.resultado < 0) {
+            row.cells[5].style.color = 'red';
+            row.cells[5].style.fontWeight = 'bold';
+        } else {
+            row.cells[5].style.color = 'green';
+            row.cells[5].style.fontWeight = 'bold';
+        }
+    });
+}
+
+// Gráficos
+let chart1, chart2;
+
+function criarGraficos() {
+    const meses = dados.map(item => item.mes);
+    const receitas = dados.map(item => item.receita);
+    const recebimentos = dados.map(item => item.recebimentos);
+    const resultados = dados.map(item => item.resultado);
+    
+    // Gráfico 1 - Receita vs Recebimentos
+    const ctx1 = document.getElementById('revenueChart').getContext('2d');
+    if (chart1) chart1.destroy();
+    chart1 = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: meses,
+            datasets: [
+                { label: 'Receita Bruta', data: receitas, borderColor: '#3498db', backgroundColor: 'rgba(52,152,219,0.1)', tension: 0.3, fill: true },
+                { label: 'Recebimentos', data: recebimentos, borderColor: '#27ae60', backgroundColor: 'rgba(39,174,96,0.1)', tension: 0.3, fill: true }
+            ]
+        },
+        options: { responsive: true, maintainAspectRatio: true }
+    });
+    
+    // Gráfico 2 - Resultado
+    const ctx2 = document.getElementById('resultChart').getContext('2d');
+    if (chart2) chart2.destroy();
+    chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: meses,
+            datasets: [{ label: 'Resultado Líquido', data: resultados, backgroundColor: '#e74c3c', borderRadius: 5 }]
+        },
+        options: { responsive: true, maintainAspectRatio: true }
+    });
+}
+
+// Exportar para Excel/CSV (FUNCIONA MESMO!)
+function exportToExcel() {
+    try {
+        // Criar cabeçalho do CSV
+        let csv = "Mês/Ano,Receita (R$),Recebimentos (R$),Descontos (R$),Inadimplência (R$),Resultado (R$)\n";
+        
+        // Adicionar dados
+        dados.forEach(item => {
+            csv += `${item.mes},${item.receita},${item.recebimentos},${item.descontos},${item.inadimplencia},${item.resultado}\n`;
+        });
+        
+        // Adicionar resumo
+        csv += `\n"RESUMO","","","","",""\n`;
+        csv += `"Total Receita",${totalReceita},"","","",""\n`;
+        csv += `"Total Recebimentos",${totalRecebimentos},"","","",""\n`;
+        csv += `"Total Descontos",${totalDescontos},"","","",""\n`;
+        csv += `"Total Inadimplência",${totalInadimplencia},"","","",""\n`;
+        csv += `"Resultado Líquido",${totalResultado},"","","",""\n`;
+        csv += `"Eficiência","${eficiencia}%","","","",""\n`;
+        csv += `"Data Exportação","${new Date().toLocaleString('pt-BR')}","","","",""\n`;
+        
+        // Criar arquivo para download
+        const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        
+        link.href = url;
+        link.setAttribute("download", `dashboard_financeiro_${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        // Mostrar mensagem de sucesso
+        const msgDiv = document.getElementById('statusMsg');
+        msgDiv.className = 'status success';
+        msgDiv.innerHTML = '✅ Arquivo exportado com sucesso! Verifique sua pasta de Downloads.';
+        setTimeout(() => {
+            msgDiv.className = 'status';
+        }, 3000);
+        
+    } catch (error) {
+        const msgDiv = document.getElementById('statusMsg');
+        msgDiv.className = 'status error';
+        msgDiv.innerHTML = '❌ Erro ao exportar: ' + error.message;
+        setTimeout(() => {
+            msgDiv.className = 'status';
+        }, 3000);
+    }
+}
+
+// Inicializar tudo
+mostrarKPIs();
+mostrarTabela();
+criarGraficos();
+</script>
+</body>
+</html>
